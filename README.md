@@ -85,7 +85,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     virtualenv --system-site-packages ~/Fabrik --python=python2.7
     source ~/Fabrik/bin/activate
     ```
-    **For mac users**
+    **For Mac Users**
     
     ```
     pip install virtualenv
@@ -117,7 +117,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     sudo apt-get install redis-server
     ```
     
-    **For mac users**
+    **For Mac Users**
     
     ```
     brew install redis
@@ -167,7 +167,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
         cd ..
         ```
 
-* For Mac users
+* For Mac Users
     * [Install Caffe](http://caffe.berkeleyvision.org/install_osx.html)
     * [Install Tensorflow](https://www.tensorflow.org/install/install_mac)
     * [Install Keras](https://keras.io/#installation)
@@ -189,6 +189,20 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
 * Setup postgres database
     * Start postgresql by typing ```sudo service postgresql start```
     * Now login as user postgres by running ```sudo -u postgres psql``` and type the commands below:
+
+        ```
+        CREATE DATABASE fabrik;
+        CREATE USER admin WITH PASSWORD 'fabrik';
+        ALTER ROLE admin SET client_encoding TO 'utf8';
+        ALTER ROLE admin SET default_transaction_isolation TO 'read committed';
+        ALTER ROLE admin SET timezone TO 'UTC';
+        ALTER USER admin CREATEDB;
+        ```
+
+    * Exit psql by typing in \q and hitting enter.
+    
+**For Mac Users**
+    * Login to postgres using ```psql -U postgres``` and type the commands below:
 
         ```
         CREATE DATABASE fabrik;
