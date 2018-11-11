@@ -85,6 +85,13 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     virtualenv --system-site-packages ~/Fabrik --python=python2.7
     source ~/Fabrik/bin/activate
     ```
+    **For mac users**
+    
+    ```
+    pip install virtualenv
+    virtualenv -p /usr/bin/python2.7 ~/Fabrik
+    source ~/Fabrik/bin/activate
+    ```
 
 2. Clone the repository via git
 
@@ -110,7 +117,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     sudo apt-get install redis-server
     ```
     
-    For mac users
+    **For mac users**
     
     ```
     brew install redis
