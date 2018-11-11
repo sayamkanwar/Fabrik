@@ -202,7 +202,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     * Exit psql by typing in \q and hitting enter.
     
 **For Mac Users**
-* Login to postgres using ````` psql -U postgre ````` and then run the following commands.
+* Login to postgres using ````` psql -U postgres ````` and then run the following commands.
 
         ````
         CREATE DATABASE fabrik;
