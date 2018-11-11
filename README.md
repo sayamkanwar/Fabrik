@@ -202,17 +202,16 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     * Exit psql by typing in \q and hitting enter.
     
 **For Mac Users**
+* Login to postgres using ````` psql -U postgre ````` and then run the following commands.
 
-    * Login to postgres using ```psql -U postgres``` and type the commands below:
-
-        ```
+        ````
         CREATE DATABASE fabrik;
         CREATE USER admin WITH PASSWORD 'fabrik';
         ALTER ROLE admin SET client_encoding TO 'utf8';
         ALTER ROLE admin SET default_transaction_isolation TO 'read committed';
         ALTER ROLE admin SET timezone TO 'UTC';
         ALTER USER admin CREATEDB;
-        ```
+        ````
 
     * Exit psql by typing in \q and hitting enter.
 
