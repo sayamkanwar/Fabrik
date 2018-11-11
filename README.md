@@ -109,6 +109,12 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     ```
     sudo apt-get install redis-server
     ```
+    
+    For mac users
+    
+    ```
+    brew install redis
+    ```
 
     * Change the hostname to ``` localhost ``` in settings/common.py line 115.
 
