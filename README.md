@@ -202,6 +202,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     * Exit psql by typing in \q and hitting enter.
     
 **For Mac Users**
+
     * Login to postgres using ```psql -U postgres``` and type the commands below:
 
         ```
