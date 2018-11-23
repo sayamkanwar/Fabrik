@@ -1,8 +1,8 @@
+# flake8: noqa
 import copy
 import sys
 import yaml
 import json
-import urlparse
 
 from caffe_app.models import Network, NetworkVersion, NetworkUpdates
 from django.shortcuts import render, redirect
