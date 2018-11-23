@@ -85,6 +85,7 @@ class Content extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.saveDb = this.saveDb.bind(this);
+    this.saveModel = this.saveModel.bind(this);
     this.loadDb = this.loadDb.bind(this);
     this.infoModal = this.infoModal.bind(this);
     this.faqModal = this.faqModal.bind(this);
@@ -979,6 +980,35 @@ class Content extends React.Component {
     layer.info.phase = 0;
     this.setState({ net });
   }
+  saveModel(){
+  let netData1 = this.state.net;
+  console.log(netData1);
+  this.setState({ load: true });
+    $.ajax({
+      url: '/saveModel',
+      dataType: 'json',
+      type: 'POST',
+      data: {
+        net: JSON.stringify(netData1),
+        net_name: this.state.net_name,
+        user_id: this.getUserId(),
+        nextLayerId: this.state.nextLayerId
+      },
+      success : function (response) {
+        if (response.result == 'success') {
+          this.modalContent = "Successfully Saved!";
+          this.openModal();
+        }
+        else if (response.result == 'error') {
+          this.addError(response.error);
+        }
+        this.setState({ load: false });
+      }.bind(this),
+      error() {
+        this.setState({ load: false });
+      }
+    });
+  }
   saveDb(){
     let netData = this.state.net;
     this.setState({ load: true });
@@ -1019,6 +1049,7 @@ class Content extends React.Component {
     new RegExp("([^?=&]+)(=([^&]*))?", "g"),
     function($0, $1, $2, $3) {
       urlParams[$1] = $3;
+      console.log(urlParams);
       }
     );
 
@@ -1055,7 +1086,7 @@ class Content extends React.Component {
     // Note: this needs to be improved when handling conflict resolution to avoid
     // inconsistent states of model
     let nextLayerId = this.state.nextLayerId;
-
+    var shareBool = false;
     this.setState({ load: true });
 
     this.dismissAllErrors();
@@ -1072,6 +1103,13 @@ class Content extends React.Component {
           // while loading a model ensure paramete intialisation
           // for UI show/hide is not executed, it leads to inconsistent
           // data which cannot be used further
+          if (response.public_sharing == false) {
+            shareBool = false;
+          }
+          else {
+            shareBool = true;
+          }
+          console.log(response);
           nextLayerId = response.next_layer_id;
           this.initialiseImportedNet(response.net,response.net_name);
           if (Object.keys(response.net).length){
@@ -1083,8 +1121,10 @@ class Content extends React.Component {
         }
         this.setState({
           load: false,
-          isShared: true,
+          isShared: shareBool,
           nextLayerId: parseInt(nextLayerId)
+        }, function() {
+          console.log("Shared value: " + this.state.isShared);
         });
       }.bind(this),
       error() {
@@ -1092,6 +1132,7 @@ class Content extends React.Component {
       }
     });
   }
+
   infoModal() {
     this.modalHeader = "About"
     this.modalContent = `Fabrik is an online collaborative platform to build and visualize deep\
@@ -1113,7 +1154,7 @@ class Content extends React.Component {
       <a target="_blank" href="https://github.com/Cloud-CV/Fabrik/blob/master/docs/source/tested_models.md"> here</a>.
       <br />
       <b>Q:</b> What do the Train/Test buttons mean?<br />
-      <b>A:</b> They are two different modes of your model: 
+      <b>A:</b> They are two different modes of your model:
       Train and Test - respectively for training your model with data and testing how and if it works.<br />
       <b>Q:</b> What does the import fuction do?<br />
       <b>A:</b> It allows you to import your previously created models in Caffe (.protoxt files),
@@ -1127,7 +1168,7 @@ class Content extends React.Component {
       <b>A:</b> Please see the instructions listed
       <a target="_blank" href="https://github.com/Cloud-CV/Fabrik/blob/master/README.md"> here</a>
       <br /><br />
-                         
+
       <b>If you have anymore questions, please visit Fabrik's Github page available
        <a target="_blank" href="https://github.com/Cloud-CV/Fabrik"> here</a> for more information.</b>
       </p>);
@@ -1282,6 +1323,7 @@ class Content extends React.Component {
       this.addNewLayer(layer);
     }
   }
+
   render() {
     let loader = null;
     if (this.state.load) {
@@ -1299,9 +1341,11 @@ class Content extends React.Component {
           <div id="sidebar-scroll" className="col-md-12">
              <h5 className="sidebar-heading">ACTIONS</h5>
              <TopBar
+              isPublic_Sharing={this.state.isShared}
               exportNet={this.exportNet}
               importNet={this.importNet}
               saveDb={this.saveDb}
+              saveModel={this.saveModel}
               zooModal={this.zooModal}
               textboxModal={this.textboxModal}
               urlModal={this.urlModal}
