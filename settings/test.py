@@ -8,10 +8,10 @@ DEBUG = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'NAME': 'fabrik',
+        'USER': 'admin',
+        'PASSWORD': 'fabrik',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }
