@@ -1,3 +1,4 @@
+# flake8: noqa
 import copy
 import sys
 import yaml
@@ -33,24 +34,24 @@ def fetch_layer_shape(request):
                 'WindowData',
                 'MemoryData',
                 'DummyData',
-                ]
+            ]
 
             # Obtain input shape of new layer
 
             if net[layerId]['info']['type'] == 'Concat':
                 for parentLayerId in net[layerId]['connection']['input'
-                        ]:
+                                                                ]:
 
                     # Check if parent layer have shapes
 
                     if net[parentLayerId]['shape']['output']:
                         net[layerId]['shape']['input'] = \
                             handle_concat_layer(net[layerId],
-                                net[parentLayerId])
+                                                net[parentLayerId])
             elif not net[layerId]['info']['type'] in dataLayers:
                 if len(net[layerId]['connection']['input']) > 0:
                     parentLayerId = net[layerId]['connection']['input'
-                            ][0]
+                                                               ][0]
 
                     # Check if parent layer have shapes
 
@@ -65,7 +66,7 @@ def fetch_layer_shape(request):
                 # handling Data Layers separately
 
                 if 'dim' in net[layerId]['params'] \
-                    and len(net[layerId]['params']['dim']):
+                        and len(net[layerId]['params']['dim']):
 
                     # layers with empty dim parameter can't be passed
 
@@ -85,7 +86,7 @@ def fetch_layer_shape(request):
                         get_layer_shape(net[layerId])
         except BaseException:
             return JsonResponse({'result': 'error',
-                                'error': str(sys.exc_info()[1])})
+                                 'error': str(sys.exc_info()[1])})
         return JsonResponse({'result': 'success', 'net': net})
 
 
@@ -110,12 +111,12 @@ def calculate_parameter(request):
             for layerId in net:
                 net[layerId]['shape'] = {}
                 net[layerId]['shape']['input'] = netObj[layerId]['shape'
-                        ]['input']
+                                                                 ]['input']
                 net[layerId]['shape']['output'] = \
                     netObj[layerId]['shape']['output']
         except BaseException:
             return JsonResponse({'result': 'error',
-                                'error': str(sys.exc_info()[1])})
+                                 'error': str(sys.exc_info()[1])})
         return JsonResponse({'result': 'success', 'net': net})
 
 
@@ -129,12 +130,12 @@ def delete_model_from_db(request):
             if model.author_id == int(userID):
                 model.delete()
                 return JsonResponse({'result': 'success',
-                                    'data': 'Model successfully deleted!'
-                                    })
+                                     'data': 'Model successfully deleted!'
+                                     })
             else:
                 return JsonResponse({'result': 'error',
-                                    'error': "This model doesn't belong to you!"
-                                    })
+                                     'error': "This model doesn't belong to you!"
+                                     })
 
 
 @csrf_exempt
@@ -179,10 +180,10 @@ def save_model_to_db(request):
                 model_update.save()
 
                 return JsonResponse({'result': 'success',
-                                    'id': model.id})
-            except:
+                                     'id': model.id})
+            except BaseException:
                 return JsonResponse({'result': 'error',
-                                    'error': str(sys.exc_info()[1])})
+                                     'error': str(sys.exc_info()[1])})
         else:
 
             try:
@@ -200,7 +201,7 @@ def save_model_to_db(request):
                 # create first version of model
 
                 model_version = NetworkVersion(network=model,
-                        network_def=net)
+                                               network_def=net)
                 model_version.save()
 
                 # create initial update for nextLayerId
@@ -212,10 +213,10 @@ def save_model_to_db(request):
                 model_update.save()
 
                 return JsonResponse({'result': 'success',
-                                    'id': model.id})
-            except:
+                                     'id': model.id})
+            except BaseException:
                 return JsonResponse({'result': 'error',
-                                    'error': str(sys.exc_info()[1])})
+                                     'error': str(sys.exc_info()[1])})
 
 
 @csrf_exempt
@@ -269,10 +270,10 @@ def save_to_db(request):
                 model_update.save()
 
                 return JsonResponse({'result': 'success',
-                                    'id': model.id})
-            except:
+                                     'id': model.id})
+            except BaseException:
                 return JsonResponse({'result': 'error',
-                                    'error': str(sys.exc_info()[1])})
+                                     'error': str(sys.exc_info()[1])})
         else:
 
             try:
@@ -294,7 +295,7 @@ def save_to_db(request):
                 # create first version of model
 
                 model_version = NetworkVersion(network=model,
-                        network_def=net)
+                                               network_def=net)
                 model_version.save()
 
                 # create initial update for nextLayerId
@@ -306,10 +307,10 @@ def save_to_db(request):
                 model_update.save()
 
                 return JsonResponse({'result': 'success',
-                                    'id': model.id})
-            except:
+                                     'id': model.id})
+            except BaseException:
                 return JsonResponse({'result': 'error',
-                                    'error': str(sys.exc_info()[1])})
+                                     'error': str(sys.exc_info()[1])})
 
 
 def create_network_version(network_def, updates_batch):
@@ -341,17 +342,17 @@ def create_network_version(network_def, updates_batch):
 
             layer_id = updated_data['layerId']
             input_layer_ids = network_def[layer_id]['connection'
-                    ]['input']
+                                                    ]['input']
             output_layer_ids = network_def[layer_id]['connection'
-                    ]['output']
+                                                     ]['output']
 
             for input_layer_id in input_layer_ids:
                 network_def[input_layer_id]['connection']['output'
-                        ].remove(layer_id)
+                                                          ].remove(layer_id)
 
             for output_layer_id in output_layer_ids:
                 network_def[output_layer_id]['connection']['input'
-                        ].remove(layer_id)
+                                                           ].remove(layer_id)
 
             del network_def[layer_id]
         elif tag == 'AddLayer':
@@ -364,10 +365,10 @@ def create_network_version(network_def, updates_batch):
             if isinstance(prev_layer_id, list):
                 for layer_id in prev_layer_id:
                     network_def[layer_id]['connection']['output'
-                            ].append(new_layer_id)
+                                                        ].append(new_layer_id)
             else:
                 network_def[prev_layer_id]['connection']['output'
-                        ].append(new_layer_id)
+                                                         ].append(new_layer_id)
             network_def[new_layer_id] = updated_data['layer']
         elif tag == 'AddComment':
 
@@ -384,10 +385,9 @@ def create_network_version(network_def, updates_batch):
 def get_network_version(netObj):
     network_version = \
         NetworkVersion.objects.filter(network=netObj).order_by('-created_on'
-            )[0]
-    updates_batch = \
-        NetworkUpdates.objects.filter(network_version=network_version).order_by('created_on'
-            )
+                                                               )[0]
+    updates_batch = NetworkUpdates.objects.filter(
+        network_version=network_version).order_by('created_on')
 
     return create_network_version(network_version.network_def,
                                   updates_batch)
@@ -397,9 +397,9 @@ def get_checkpoint_version(netObj, checkpoint_id):
     network_update = NetworkUpdates.objects.get(id=checkpoint_id)
     network_version = network_update.network_version
 
-    updates_batch = \
-        NetworkUpdates.objects.filter(network_version=network_version).filter(created_on__lte=network_update.created_on).order_by('created_on'
-            )
+    updates_batch = NetworkUpdates.objects.filter(
+        network_version=network_version).filter(
+        created_on__lte=network_update.created_on).order_by('created_on')
     return create_network_version(network_version.network_def,
                                   updates_batch)
 
@@ -411,12 +411,12 @@ def load_from_db(request):
             try:
                 model = \
                     Network.objects.get(id=int(request.POST['proto_id'
-                        ]))
+                                                            ]))
                 version_id = None
                 data = {}
 
                 if 'version_id' in request.POST \
-                    and request.POST['version_id'] != '':
+                        and request.POST['version_id'] != '':
 
                     # added for loading any previous version of model
 
@@ -433,14 +433,14 @@ def load_from_db(request):
             except Exception:
 
                 return JsonResponse({'result': 'error',
-                                    'error': 'No network file found'})
+                                     'error': 'No network file found'})
             return JsonResponse({
                 'result': 'success',
                 'net': net,
                 'net_name': model.name,
                 'next_layer_id': next_layer_id,
                 'public_sharing': model.public_sharing,
-                })
+            })
 
     if request.method == 'GET':
         return index(request)
@@ -454,7 +454,6 @@ def load_model_from_db(request):
             if Network.objects.filter(author=userID).exists():
                 data = {}
                 models = Network.objects.filter(author=userID)
-                modlen = len(models)
                 i = 1
                 for mod in models:
                     data_index1 = 'Model%d_Name' % i
@@ -465,7 +464,7 @@ def load_model_from_db(request):
                 return JsonResponse({'result': 'success', 'data': data})
             else:
                 return JsonResponse({'result': 'error',
-                                    'error': 'No models found'})
+                                     'error': 'No models found'})
 
 
 @csrf_exempt
@@ -474,21 +473,19 @@ def fetch_model_history(request):
         try:
             network_id = int(request.POST['net_id'])
             network = Network.objects.get(id=network_id)
-            network_versions = \
-                NetworkVersion.objects.filter(network=network).order_by('created_on'
-                    )
+            network_versions = NetworkVersion.objects.filter(
+                network=network).order_by('created_on')
 
             modelHistory = {}
             for version in network_versions:
-                network_updates = \
-                    NetworkUpdates.objects.filter(network_version=version).order_by('created_on'
-                        )
+                network_updates = NetworkUpdates.objects.filter(
+                    network_version=version).order_by('created_on')
                 for update in network_updates:
                     modelHistory[update.id] = update.tag
 
             return JsonResponse({'result': 'success',
-                                'data': modelHistory})
+                                 'data': modelHistory})
         except Exception:
             return JsonResponse({'result': 'error',
-                                'error': 'Unable to load model history'
-                                })
+                                 'error': 'Unable to load model history'
+                                 })
