@@ -981,15 +981,14 @@ class Content extends React.Component {
     this.setState({ net });
   }
   saveModel(){
-  let netData1 = this.state.net;
-  console.log(netData1);
+  let modelData = this.state.net;
   this.setState({ load: true });
     $.ajax({
       url: '/saveModel',
       dataType: 'json',
       type: 'POST',
       data: {
-        net: JSON.stringify(netData1),
+        net: JSON.stringify(modelData),
         net_name: this.state.net_name,
         user_id: this.getUserId(),
         nextLayerId: this.state.nextLayerId
@@ -1086,7 +1085,7 @@ class Content extends React.Component {
     // Note: this needs to be improved when handling conflict resolution to avoid
     // inconsistent states of model
     let nextLayerId = this.state.nextLayerId;
-    var shareBool = false;
+    let is_shared = false;
     this.setState({ load: true });
 
     this.dismissAllErrors();
@@ -1104,10 +1103,10 @@ class Content extends React.Component {
           // for UI show/hide is not executed, it leads to inconsistent
           // data which cannot be used further
           if (response.public_sharing == false) {
-            shareBool = false;
+            is_shared = false;
           }
           else {
-            shareBool = true;
+            is_shared = true;
           }
           console.log(response);
           nextLayerId = response.next_layer_id;
@@ -1121,7 +1120,7 @@ class Content extends React.Component {
         }
         this.setState({
           load: false,
-          isShared: shareBool,
+          isShared: is_shared,
           nextLayerId: parseInt(nextLayerId)
         }, function() {
           console.log("Shared value: " + this.state.isShared);
@@ -1341,7 +1340,7 @@ class Content extends React.Component {
           <div id="sidebar-scroll" className="col-md-12">
              <h5 className="sidebar-heading">ACTIONS</h5>
              <TopBar
-              isPublic_Sharing={this.state.isShared}
+              isPublicSharing={this.state.isShared}
               exportNet={this.exportNet}
               importNet={this.importNet}
               saveDb={this.saveDb}
