@@ -1048,7 +1048,6 @@ class Content extends React.Component {
     new RegExp("([^?=&]+)(=([^&]*))?", "g"),
     function($0, $1, $2, $3) {
       urlParams[$1] = $3;
-      console.log(urlParams);
       }
     );
 
@@ -1108,7 +1107,7 @@ class Content extends React.Component {
           else {
             is_shared = true;
           }
-          console.log(response);
+          //console.log(response);
           nextLayerId = response.next_layer_id;
           this.initialiseImportedNet(response.net,response.net_name);
           if (Object.keys(response.net).length){
@@ -1123,7 +1122,7 @@ class Content extends React.Component {
           isShared: is_shared,
           nextLayerId: parseInt(nextLayerId)
         }, function() {
-          console.log("Shared value: " + this.state.isShared);
+          //console.log("Shared value: " + this.state.isShared);
         });
       }.bind(this),
       error() {
