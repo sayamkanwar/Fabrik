@@ -1101,10 +1101,7 @@ class Content extends React.Component {
           // while loading a model ensure paramete intialisation
           // for UI show/hide is not executed, it leads to inconsistent
           // data which cannot be used further
-          if (response.public_sharing == false) {
-            is_shared = false;
-          }
-          else {
+          if (response.public_sharing == true) {
             is_shared = true;
           }
           //console.log(response);
