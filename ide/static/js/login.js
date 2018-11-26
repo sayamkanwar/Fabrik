@@ -184,13 +184,15 @@ class Login extends React.Component {
     if(this.state.loginState) {
       return (
         <div>
+        <div className="long-buttons">
           <DashButton />
-          <h5 className="sidebar-heading" id="sidebar-login-button" onClick={
+          <h5 className="sidebar-heading" id="sidebar-logout-button" onClick={
             () => {
               this.logoutUser();
           }}>
           <div>LOGOUT</div>
           </h5>
+          </div>
           <div id="successful-login-notification">
             <i className="material-icons">done</i>
             <div id="successful-login-notification-message"></div>
