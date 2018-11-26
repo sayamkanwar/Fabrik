@@ -1101,10 +1101,13 @@ class Content extends React.Component {
           // while loading a model ensure paramete intialisation
           // for UI show/hide is not executed, it leads to inconsistent
           // data which cannot be used further
-          if (response.public_sharing == true) {
+          if (response.public_sharing == false) {
+            is_shared = false;
+          }
+          else {
             is_shared = true;
           }
-          //console.log(response);
+          console.log(response);
           nextLayerId = response.next_layer_id;
           this.initialiseImportedNet(response.net,response.net_name);
           if (Object.keys(response.net).length){
@@ -1119,7 +1122,7 @@ class Content extends React.Component {
           isShared: is_shared,
           nextLayerId: parseInt(nextLayerId)
         }, function() {
-          //console.log("Shared value: " + this.state.isShared);
+          console.log("Shared value: " + this.state.isShared);
         });
       }.bind(this),
       error() {
@@ -1336,7 +1339,7 @@ class Content extends React.Component {
           <div id="sidebar-scroll" className="col-md-12">
              <h5 className="sidebar-heading">ACTIONS</h5>
              <TopBar
-              isPublicSharing={this.state.isShared}
+              isShared={this.state.isShared}
               exportNet={this.exportNet}
               importNet={this.importNet}
               saveDb={this.saveDb}
