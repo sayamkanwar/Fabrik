@@ -11,7 +11,7 @@ class DashButton extends React.Component {
 	render(){
 		return(
 			<div>
-			<h5 style={{marginBottom: '0.6em'}} className="sidebar-heading" id="sidebar-login-button" onClick={() => {this.openDash()}}>
+			<h5 className="sidebar-heading" id="sidebar-dash-button" onClick={() => {this.openDash()}}>
 			<div>DASHBOARD</div>
 			</h5>
 			</div>
