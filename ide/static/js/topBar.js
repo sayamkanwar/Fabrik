@@ -4,14 +4,14 @@ import ReactTooltip from 'react-tooltip';
 class TopBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isPublicSharing: false};
+    this.state = {isShared: false};
   }
   componentWillReceiveProps(newProps){
-    this.setState({isPublicSharing: newProps.isPublicSharing});
+    this.setState({isShared: newProps.isShared});
   }
   render() {
     let content = null;
-    if (this.state.isPublicSharing == true) {
+    if (this.state.isShared == true) {
       content = (<div className="topbar-col">
                     <div className="form-group">
                       <button id="topbar-icon" className="btn btn-default dropdown-toggle form-control" data-toggle="dropdown"
@@ -126,7 +126,7 @@ TopBar.propTypes = {
   textboxModal: React.PropTypes.func,
   urlModal: React.PropTypes.func,
   updateHistoryModal: React.PropTypes.func,
-  isPublicSharing: React.PropTypes.bool
+  isShared: React.PropTypes.bool
 };
 
 export default TopBar;
