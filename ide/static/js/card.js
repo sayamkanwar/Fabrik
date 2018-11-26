@@ -9,7 +9,7 @@ class Card extends React.Component {
                 background: '#fff', 
                 height: 290, 
                 width: 240, 
-                borderRadius: 30, 
+                borderRadius: 20, 
                 display: 'inline-block', 
                 margin: 20, 
                 boxShadow: '0 2px 6px rgba(112,112,112,0.2)'
