@@ -227,7 +227,7 @@ a:hover {
 
 .demo-gif {
 	width: 60%;
-	border: 0.6em solid rgb(41,128,185,0.2);
+	border: 0.6em solid rgba(41,128,185,0.2);
 }
 
 .fourth h1 {
@@ -240,10 +240,14 @@ a:hover {
 }
 
 .member {
-	margin: 0.4em;
+	margin: 1em;
 	margin-bottom: 3em;
 	width: 200px;
 	display: inline-block;
+	background: #fff;
+	padding: 1em;
+	box-shadow:1px 1px 132px -20px rgba(41,128,185,0.2);
+	border-radius: 5px;
 }
 
 .member p {
@@ -253,8 +257,30 @@ a:hover {
 }
 
 .member img {
-	width: 80%;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 0.4em solid rgba(41,128,185,0.2);
 }
+
+.social-icons span{
+	margin-right: 0.4em;
+	margin-left: 0.4em;
+	margin-top: -0.4em;
+	border: 0.1em solid #529ae3;
+	border-radius: 50%;
+	padding: 1em;
+	font-size: 0.8em;
+	color: #529ae3;
+	background: #fff;
+	transition: all .3s ease;
+}
+
+.social-icons span:hover {
+	background: #529ae3;
+	color: #fff;
+	transition: all .3s ease;
+}	
 
 .footer {
 	background: #fff;
