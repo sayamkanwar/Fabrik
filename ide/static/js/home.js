@@ -17,7 +17,6 @@ class Home extends React.Component {
       this.importModel = this.importModel.bind(this);
       this.shareModel = this.shareModel.bind(this);
       this.realTimeCollaboration = this.realTimeCollaboration.bind(this);
-
   	}
   	scrollToAbout(){
   		this.refs.about.scrollIntoView({behavior: 'smooth'});
@@ -321,32 +320,52 @@ class Home extends React.Component {
             <div className="members">
               <br />
               <div className="member">
-                <img src="static/img/user 2.png" />
-                <p>Name</p>
+                <img src="static/img/Ram_Ramrakhya.jpg" />
+                <p>Ram Ramrakhya</p>
+                <p className="social-icons">
+                <a href="http://github.com/Ram81">
+                <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </a>
+                <a href="mailto:ramramrakhya81@gmail.com">
+                <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+                </p>
               </div>
               <div className="member">
                 <img src="static/img/user 2.png" />
-                <p>Name</p>
+                <p>Utsav Garg</p>
+                <p className="social-icons">
+                <a href="#">
+                <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </a>
+                <a href="#">
+                <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+                </p>
               </div>
               <div className="member">
-                <img src="static/img/user 2.png" />
-                <p>Name</p>
+                <img src="static/img/Deshraj.png" />
+                <p>Deshraj</p>
+                <p className="social-icons">
+                <a href="http://deshraj.xyz">
+                <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </a>
+                <a href="mailto:deshrajdry@gmail.com">
+                <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+                </p>
               </div>
               <div className="member">
-                <img src="static/img/user 2.png" />
-                <p>Name</p>
-              </div>
-              <div className="member">
-                <img src="static/img/user 2.png" />
-                <p>Name</p>
-              </div>
-              <div className="member">
-                <img src="static/img/user 2.png" />
-                <p>Name</p>
-              </div>
-              <div className="member">
-                <img src="static/img/user 2.png" />
-                <p>Name</p>
+                <img src="static/img/Viraj_Prabhu.png" />
+                <p>Viraj Prabhu</p>
+                <p className="social-icons">
+                <a href="http://virajprabhu.github.io">
+                <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </a>
+                <a href="mailto:virajp@gatech.edu">
+                <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                </a>
+                </p>
               </div>
             </div>
           </center>
