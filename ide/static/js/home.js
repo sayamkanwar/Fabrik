@@ -217,7 +217,7 @@ class Home extends React.Component {
     }
     return (
       <div>
-        <div className="container">
+        <div className="home-container">
           <div className="header">
             <img src="static/img/cloudcv.png" className="logo" />
             <div className="links">
