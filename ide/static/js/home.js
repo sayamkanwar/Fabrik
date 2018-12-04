@@ -3,20 +3,20 @@ import React from 'react';
 class Home extends React.Component {
 	constructor(props) {
     	super(props);
-      this.state = ({feature: null});
+        this.state = ({feature: null});
     	this.scrollToAbout = this.scrollToAbout.bind(this);
     	this.scrollToFeatures = this.scrollToFeatures.bind(this);
     	this.scrollToTeam = this.scrollToTeam.bind(this);
     	this.showFirstRow = this.showFirstRow.bind(this);
-      this.showSecondRow = this.showSecondRow.bind(this);
+        this.showSecondRow = this.showSecondRow.bind(this);
     	this.showThirdRow = this.showThirdRow.bind(this);
-      this.loadModelFromZoo = this.loadModelFromZoo.bind(this);
-      this.loadModelFromInput = this.loadModelFromInput.bind(this);
-      this.buildModel = this.buildModel.bind(this);
-      this.exportModel = this.exportModel.bind(this);
-      this.importModel = this.importModel.bind(this);
-      this.shareModel = this.shareModel.bind(this);
-      this.realTimeCollaboration = this.realTimeCollaboration.bind(this);
+        this.loadModelFromZoo = this.loadModelFromZoo.bind(this);
+        this.loadModelFromInput = this.loadModelFromInput.bind(this);
+        this.buildModel = this.buildModel.bind(this);
+        this.exportModel = this.exportModel.bind(this);
+        this.importModel = this.importModel.bind(this);
+        this.shareModel = this.shareModel.bind(this);
+        this.realTimeCollaboration = this.realTimeCollaboration.bind(this);
   	}
   	scrollToAbout(){
   		this.refs.about.scrollIntoView({behavior: 'smooth'});
@@ -30,23 +30,22 @@ class Home extends React.Component {
   	showFirstRow(){
   		let slider = document.getElementsByClassName('slider')[0];
   		slider.style.left = '0';
-      let dot1 = document.getElementsByClassName('dot1')[0];
-      let dot2 = document.getElementsByClassName('dot2')[0];
-      let dot3 = document.getElementsByClassName('dot3')[0];
-      dot1.className = 'dot1 active';
-      dot2.className = 'dot2';
-      dot3.className = 'dot3';
+        let dot1 = document.getElementsByClassName('dot1')[0];
+        let dot2 = document.getElementsByClassName('dot2')[0];
+        let dot3 = document.getElementsByClassName('dot3')[0];
+        dot1.className = 'dot1 active';
+        dot2.className = 'dot2';
+        dot3.className = 'dot3';
   	}
    	showSecondRow(){
   		let slider = document.getElementsByClassName('slider')[0];
   		slider.style.left = '-100%';
-      let dot1 = document.getElementsByClassName('dot1')[0];
-      let dot2 = document.getElementsByClassName('dot2')[0];
-      let dot3 = document.getElementsByClassName('dot3')[0];
-      dot1.className = 'dot1';
-      dot2.className = 'dot2 active';
-      dot3.className = 'dot3';
-      // demo_feature = "2nd row";
+        let dot1 = document.getElementsByClassName('dot1')[0];
+        let dot2 = document.getElementsByClassName('dot2')[0];
+        let dot3 = document.getElementsByClassName('dot3')[0];
+        dot1.className = 'dot1';
+        dot2.className = 'dot2 active';
+        dot3.className = 'dot3';
   	}
     showThirdRow(){
       let slider = document.getElementsByClassName('slider')[0];
