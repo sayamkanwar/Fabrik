@@ -346,6 +346,24 @@ class Home extends React.Component {
               <div className="members">
                 <br />
                 <div className="member">
+                  <img src="static/img/Deshraj.png" />
+                  <p>Deshraj</p>
+                  <p className="social-icons">
+                    <a href="http://deshraj.xyz">
+                      <span
+                        className="glyphicon glyphicon-user"
+                        aria-hidden="true"
+                      />
+                    </a>
+                    <a href="mailto:deshrajdry@gmail.com">
+                      <span
+                        className="glyphicon glyphicon-envelope"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </p>
+                </div>
+                <div className="member">
                   <img src="static/img/Ram_Ramrakhya.jpg" />
                   <p>Ram Ramrakhya</p>
                   <p className="social-icons">
@@ -374,24 +392,6 @@ class Home extends React.Component {
                       />
                     </a>
                     <a href="#">
-                      <span
-                        className="glyphicon glyphicon-envelope"
-                        aria-hidden="true"
-                      />
-                    </a>
-                  </p>
-                </div>
-                <div className="member">
-                  <img src="static/img/Deshraj.png" />
-                  <p>Deshraj</p>
-                  <p className="social-icons">
-                    <a href="http://deshraj.xyz">
-                      <span
-                        className="glyphicon glyphicon-user"
-                        aria-hidden="true"
-                      />
-                    </a>
-                    <a href="mailto:deshrajdry@gmail.com">
                       <span
                         className="glyphicon glyphicon-envelope"
                         aria-hidden="true"
