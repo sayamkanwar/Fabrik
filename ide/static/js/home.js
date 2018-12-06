@@ -3,7 +3,13 @@ import React from "react";
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { feature: null };
+    this.state = {
+      feature_id: "1",
+      feature: "model_zoo",
+      feature_title: "Load Model From Zoo",
+      feature_description:
+        "You can choose a model from a variety of models located in the model zoo belonging to different categories such as Recognition, Detection, Retrieval, Seq2Seq, Captioning and Segmentation."
+    };
     this.scrollToAbout = this.scrollToAbout.bind(this);
     this.scrollToFeatures = this.scrollToFeatures.bind(this);
     this.scrollToTeam = this.scrollToTeam.bind(this);
@@ -17,6 +23,8 @@ class Home extends React.Component {
     this.importModel = this.importModel.bind(this);
     this.shareModel = this.shareModel.bind(this);
     this.realTimeCollaboration = this.realTimeCollaboration.bind(this);
+    this.startDemo = this.startDemo.bind(this);
+    this.stopDemo = this.stopDemo.bind(this);
   }
   scrollToAbout() {
     this.refs.about.scrollIntoView({ behavior: "smooth" });
@@ -59,7 +67,15 @@ class Home extends React.Component {
   }
 
   loadModelFromZoo() {
-    this.setState({ feature: "model_zoo" });
+    document.getElementsByClassName("demo-left")[0].style.width = "39.3%";
+    document.getElementsByClassName("demo-right")[0].style.width = "30%";
+    this.setState({
+      feature_id: "1",
+      feature: "model_zoo",
+      feature_title: "Load Model From Zoo",
+      feature_description:
+        "You can choose a model from a variety of models located in the model zoo belonging to different categories such as Recognition, Detection, Retrieval, Seq2Seq, Captioning and Segmentation."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -79,7 +95,15 @@ class Home extends React.Component {
   }
 
   loadModelFromInput() {
-    this.setState({ feature: "model_input" });
+    document.getElementsByClassName("demo-left")[0].style.width = "30%";
+    document.getElementsByClassName("demo-right")[0].style.width = "39.3%";
+    this.setState({
+      feature_id: "2",
+      feature: "model_input",
+      feature_title: "Load Model From Input",
+      feature_description:
+        "You can load a model through a text input for any of the three frameworks. You will have to enter prototxt for Caffe, JSON for Keras and pbtxt for Tensorflow."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -99,7 +123,15 @@ class Home extends React.Component {
   }
 
   buildModel() {
-    this.setState({ feature: "build_model" });
+    document.getElementsByClassName("demo-left")[0].style.width = "39.3%";
+    document.getElementsByClassName("demo-right")[0].style.width = "30%";
+    this.setState({
+      feature_id: "3",
+      feature: "build_model",
+      feature_title: "Build Model From Components",
+      feature_description:
+        "There are a lot of components, called layers, provided which you can use to create neural nets."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -119,7 +151,15 @@ class Home extends React.Component {
   }
 
   exportModel() {
-    this.setState({ feature: "export_model" });
+    document.getElementsByClassName("demo-left")[0].style.width = "30%";
+    document.getElementsByClassName("demo-right")[0].style.width = "39.3%";
+    this.setState({
+      feature_id: "4",
+      feature: "export_model",
+      feature_title: "Export Model",
+      feature_description:
+        "You can export your model in any of the 3 frameworks."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -139,7 +179,15 @@ class Home extends React.Component {
   }
 
   importModel() {
-    this.setState({ feature: "import_model" });
+    document.getElementsByClassName("demo-left")[0].style.width = "39.3%";
+    document.getElementsByClassName("demo-right")[0].style.width = "30%";
+    this.setState({
+      feature_id: "5",
+      feature: "import_model",
+      feature_title: "Import Model",
+      feature_description:
+        "You can import model files from your local system and load them in the canvas."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -159,7 +207,15 @@ class Home extends React.Component {
   }
 
   shareModel() {
-    this.setState({ feature: "share_model" });
+    document.getElementsByClassName("demo-left")[0].style.width = "30%";
+    document.getElementsByClassName("demo-right")[0].style.width = "39.3%";
+    this.setState({
+      feature_id: "6",
+      feature: "share_model",
+      feature_title: "Share Model",
+      feature_description:
+        "You can generate a shareable link for your model which allows you to collaborate with anyone easily."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -179,7 +235,15 @@ class Home extends React.Component {
   }
 
   realTimeCollaboration() {
-    this.setState({ feature: "real_time_collaboration" });
+    document.getElementsByClassName("demo-left")[0].style.width = "39.3%";
+    document.getElementsByClassName("demo-right")[0].style.width = "30%";
+    this.setState({
+      feature_id: "7",
+      feature: "real_time_collaboration",
+      feature_title: "Real Time Collaboration",
+      feature_description:
+        "You can collaborate with someone else and edit your model in realtime."
+    });
     let line_model_zoo = document.getElementById("line_model_zoo");
     let line_model_input = document.getElementById("line_model_input");
     let line_build_model = document.getElementById("line_build_model");
@@ -198,23 +262,129 @@ class Home extends React.Component {
     line_real_time_collaboration.className = "line line-active";
   }
 
+  startDemo() {
+    document.getElementsByClassName("overlay")[0].style.opacity = 0;
+    let demo_gif = document.getElementsByClassName("demo-gif")[0];
+    if (this.state.feature == "model_zoo") {
+      demo_gif.src = "static/img/features/load_model_from_zoo.gif";
+    } else if (this.state.feature == "model_input") {
+      demo_gif.src = "static/img/features/load_model_from_input.gif";
+    } else if (this.state.feature == "build_model") {
+      demo_gif.src = "static/img/features/build_model.gif";
+    } else if (this.state.feature == "export_model") {
+      demo_gif.src = "static/img/features/export_model.gif";
+    } else if (this.state.feature == "import_model") {
+      demo_gif.src = "static/img/features/import_model.gif";
+    } else if (this.state.feature == "share_model") {
+      demo_gif.src = "static/img/features/share_model.gif";
+    } else if (this.state.feature == "real_time_collaboration") {
+      demo_gif.src = "static/img/features/real_time_collaboration.gif";
+    }
+  }
+
+  stopDemo() {
+    document.getElementsByClassName("overlay")[0].style.opacity = 1;
+    let demo_gif = document.getElementsByClassName("demo-gif")[0];
+    if (this.state.feature == "model_zoo") {
+      demo_gif.src = "static/img/features/load_from_zoo_thumb.png";
+    } else if (this.state.feature == "model_input") {
+      demo_gif.src = "static/img/features/load_model_from_input_thumb.png";
+    } else if (this.state.feature == "build_model") {
+      demo_gif.src = "static/img/features/build_model_thumb.png";
+    } else if (this.state.feature == "export_model") {
+      demo_gif.src = "static/img/features/export_model_thumb.png";
+    } else if (this.state.feature == "import_model") {
+      demo_gif.src = "static/img/features/import_model_thumb.png";
+    } else if (this.state.feature == "share_model") {
+      demo_gif.src = "static/img/features/share_model_thumb.png";
+    } else if (this.state.feature == "real_time_collaboration") {
+      demo_gif.src = "static/img/features/real_time_collaboration_thumb.png";
+    }
+  }
+
   render() {
     let demo_feature_path = "default.png";
     if (this.state.feature == "model_zoo") {
-      demo_feature_path = "load_model_from_zoo.gif";
+      demo_feature_path = "load_from_zoo_thumb.png";
     } else if (this.state.feature == "model_input") {
-      demo_feature_path = "load_model_from_input.gif";
+      demo_feature_path = "load_model_from_input_thumb.png";
     } else if (this.state.feature == "build_model") {
-      demo_feature_path = "build_model.gif";
+      demo_feature_path = "build_model_thumb.png";
     } else if (this.state.feature == "export_model") {
-      demo_feature_path = "export_model.gif";
+      demo_feature_path = "export_model_thumb.png";
     } else if (this.state.feature == "import_model") {
-      demo_feature_path = "import_model.gif";
+      demo_feature_path = "import_model_thumb.png";
     } else if (this.state.feature == "share_model") {
-      demo_feature_path = "share_model.gif";
+      demo_feature_path = "share_model_thumb.png";
     } else if (this.state.feature == "real_time_collaboration") {
-      demo_feature_path = "real_time_collaboration.gif";
+      demo_feature_path = "real_time_collaboration_thumb.png";
     }
+    let demo_content = null;
+    if (this.state.feature_id % 2 == 0) {
+      demo_content = (
+        <div>
+          <div className="demo-left">
+            <h2>{this.state.feature_title}</h2>
+            <p>{this.state.feature_description}</p>
+          </div>
+          <div className="demo-right">
+            <div className="demo-box">
+              <div className="demo-box-top">
+                <div className="circle1" />
+                <div className="circle2" />
+                <div className="circle3" />
+              </div>
+              <div
+                className="overlay"
+                onMouseOver={this.startDemo}
+                onMouseOut={this.stopDemo}
+              >
+                <span className="glyphicon glyphicon-play" aria-hidden="true" />
+              </div>
+              <img
+                src={"static/img/features/" + demo_feature_path}
+                className="demo-gif"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      demo_content = (
+        <div>
+          <div className="demo-left">
+            <div className="demo-box">
+              <div className="demo-box-top">
+                <div className="circle1" />
+                <div className="circle2" />
+                <div className="circle3" />
+              </div>
+              <div
+                className="overlay"
+                onMouseOver={this.startDemo}
+                onMouseOut={this.stopDemo}
+              >
+                <center>
+                  <span
+                    className="glyphicon glyphicon-play"
+                    aria-hidden="true"
+                  />
+                </center>
+              </div>
+              <img
+                src={"static/img/features/" + demo_feature_path}
+                className="demo-gif"
+              />
+            </div>
+          </div>
+          <div className="demo-right">
+            <h2>{this.state.feature_title}</h2>
+            <p>{this.state.feature_description}</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         <div className="home-container">
@@ -273,7 +443,7 @@ class Home extends React.Component {
                     <div className="box">
                       <img src="static/img/folder.png" />
                       <p>Load Model From Zoo</p>
-                      <div className="line" id="line_model_zoo" />
+                      <div className="line line-active" id="line_model_zoo" />
                     </div>
                   </a>
                   <a onClick={() => this.loadModelFromInput()}>
@@ -331,12 +501,7 @@ class Home extends React.Component {
                   </a>
                 </div>
               </div>
-              <div className="demo">
-                <img
-                  src={"static/img/features/" + demo_feature_path}
-                  className="demo-gif"
-                />
-              </div>
+              <div className="demo">{demo_content}</div>
             </center>
             <br />
           </div>
