@@ -126,85 +126,21 @@ a:hover {
 .third h1 {
   margin-top: 1em;
 }
-.features {
-  width: 80vw;
-  margin-top: 2em;
-  overflow-x: hidden;
-}
-.slider {
-  width: 270vw;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  left: 0%;
-  padding: 3em 0;
-  transition: all 0.6s ease;
-}
-.box {
-  background: #fff;
-  box-shadow: 1px 1px 110px -30px rgba(99, 124, 149, 0.6);
-  width: 22vw;
-  height: 12em;
-  cursor: pointer;
-  margin: 0em 2.333vw 0em 2.3vw;
-}
-.box img {
-  width: 30%;
-  margin-top: 1.5em;
-}
-.box p {
-  color: #1c446c;
-}
-.dots {
-  display: inline-block;
-}
-.dot1,
-.dot2,
-.dot3 {
-  height: 0.8em;
-  width: 0.8em;
-  margin: 0.8em;
-  border-radius: 50%;
-  display: inline-block;
-  background: #e7ebf0;
-}
-.active {
-  background: #529ae3;
-  transition: all 0.3s ease;
-}
-.line {
-  background: #529ae3;
-  width: 0;
-  height: 0.2em;
-  border-radius: 10em;
-  margin-top: 2.4em;
-  transition: all 0.3s ease;
-}
-.line-active {
-  background: #529ae3;
-  height: 0.2em;
-  border-radius: 10em;
-  margin-top: 2.4em;
-  transition: all 0.3s ease;
-  width: 30%;
-}
-.box:hover > .line {
-  width: 30%;
-  transition: all 0.3s ease;
-}
 
 .demo {
-  margin: 3em;
+	width: 110%;
+	margin: 4em 0 4em -5em; 
 }
 
 .demo-left,
 .demo-right {
   display: inline-block;
-  margin: 1em;
+  
 }
 
 .demo-right {
   width: 30%;
+  margin: 0 4em 0 4em;
 }
 .demo-right h2,
 .demo-left h2 {
@@ -224,11 +160,13 @@ a:hover {
   height: 25em;
   box-shadow: 1px 1px 132px -20px rgba(0, 0, 0, 0.2);
   width: 40em;
+  margin: 1em;
+  /*margin-left: -10em;*/
   border-radius: 7px;
 }
 .overlay {
   background: rgba(0, 0, 0, 0.6);
-  height: 22.2em;
+  height: 22.3em;
   width: 40em;
   margin-top: 2.9em;
   position: absolute;
@@ -242,8 +180,8 @@ a:hover {
   margin-top: 2.1em;
 }
 .overlay:hover {
-  opacity: 0;
-  transition: all 0.3s ease;
+	opacity: 0;
+	transition: all .3s ease;
 }
 .demo-box-top {
   margin: 1em 0 0.5em 1em;
