@@ -132,7 +132,7 @@ class Home extends React.Component {
                   </p>
                 </div>
                 <div className="demo-left">
-                  <div className="demo-box">
+                  <div className="demo-box" id="demo-box-2">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -166,7 +166,7 @@ class Home extends React.Component {
               </div>
               <div className="demo">
                 <div className="demo-left">
-                  <div className="demo-box">
+                  <div className="demo-box" id="demo-box-3">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -201,18 +201,17 @@ class Home extends React.Component {
                     Build Model From Components
                   </h2>
                   <p>
-                    There are a lot of components, called layers, provided which
-                    you can use to create neural nets.
+                    There are many built-in components called layers which can be used to build a neural net by simply clicking them to add them into the canvas. The layers are grouped into categories such as Data, Vision, Recurrent, Utitlity, Activation/Neuron, Normalization, Common, Noise, Loss and Wrapper.
                   </p>
                 </div>
               </div>
               <div className="demo">
                 <div className="demo-right">
                   <h2>Export Model</h2>
-                  <p>You can export your model in any of the 3 frameworks.</p>
+                  <p>You can export your model in any of the three frameworks. On exporting your model, the model file is downloaded into your local system which you can use to import your model into the canvas.</p>
                 </div>
                 <div className="demo-left">
-                  <div className="demo-box">
+                  <div className="demo-box" id="demo-box-4">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -245,7 +244,7 @@ class Home extends React.Component {
               </div>
               <div className="demo">
                 <div className="demo-left">
-                  <div className="demo-box">
+                  <div className="demo-box" id="demo-box-5">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -278,8 +277,7 @@ class Home extends React.Component {
                 <div className="demo-right">
                   <h2>Import Model</h2>
                   <p>
-                    You can import model files from your local system and load
-                    them in the canvas.
+                    You can select your model file from your local system to load it into the canvas and then you can edit it and also perform other actions like share, export.
                   </p>
                 </div>
               </div>
@@ -287,12 +285,11 @@ class Home extends React.Component {
                 <div className="demo-right">
                   <h2>Share Model</h2>
                   <p>
-                    You can generate a shareable link for your model which
-                    allows you to collaborate with anyone easily.
+                    A shareable link can be generated using this feature which allows you to share your model by giving the generated link to another person.
                   </p>
                 </div>
                 <div className="demo-left">
-                  <div className="demo-box">
+                  <div className="demo-box" id="demo-box-6">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -325,7 +322,7 @@ class Home extends React.Component {
               </div>
               <div className="demo">
                 <div className="demo-left">
-                  <div className="demo-box">
+                  <div className="demo-box" id="demo-box-7">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -359,8 +356,7 @@ class Home extends React.Component {
                 <div className="demo-right">
                   <h2>Real Time Collaboration</h2>
                   <p>
-                    You can collaborate with someone else and edit your model in
-                    real time.
+                    You can work jointly with other people ,with whom the model is shared, in real time. All the edits that are made will be reflected to everyone who are working on the model.
                   </p>
                 </div>
               </div>
