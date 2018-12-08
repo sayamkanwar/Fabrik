@@ -47,9 +47,15 @@ body {
   margin-right: 6em;
   border-radius: 10em;
 }
-.first-left {
+.first {
 	display: inline-block;
-	/*padding: 3em;*/
+}
+.first-left {
+  float: left;
+  margin-left: 17em;
+  margin-top: 10em;
+  width: 30%;
+  display: inline-block;
 }
 .first-left h1 {
   font-size: 3.5em;
@@ -75,8 +81,13 @@ body {
   text-decoration: none;
   color: #fff;
 }
+.first-right {
+	margin-left: -2em; 
+	width: 40%;
+	display: inline-block;
+}
 .first-right img {
-  width: 40%;
+  width: 110%;
   margin: 2em;
 }
 .second {
@@ -276,4 +287,17 @@ body {
 }
 .icons img {
   width: 40%;
+}
+
+@media (min-width: 2560px) {
+	.first-left {
+		margin-left: 40em;
+	}
+	.first-right {
+		margin-left: 10em;
+		width: 30%;
+	}
+	.first-right img {
+		width: 120%;
+	}
 }
