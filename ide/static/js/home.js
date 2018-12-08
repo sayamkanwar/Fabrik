@@ -132,7 +132,7 @@ class Home extends React.Component {
                   </p>
                 </div>
                 <div className="demo-left">
-                  <div className="demo-box" id="demo-box-2">
+                  <div className="demo-box">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -166,7 +166,7 @@ class Home extends React.Component {
               </div>
               <div className="demo">
                 <div className="demo-left">
-                  <div className="demo-box" id="demo-box-3">
+                  <div className="demo-box">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -211,7 +211,7 @@ class Home extends React.Component {
                   <p>You can export your model in any of the three frameworks. On exporting your model, the model file is downloaded into your local system which you can use to import your model into the canvas.</p>
                 </div>
                 <div className="demo-left">
-                  <div className="demo-box" id="demo-box-4">
+                  <div className="demo-box">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -244,7 +244,7 @@ class Home extends React.Component {
               </div>
               <div className="demo">
                 <div className="demo-left">
-                  <div className="demo-box" id="demo-box-5">
+                  <div className="demo-box">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -289,7 +289,7 @@ class Home extends React.Component {
                   </p>
                 </div>
                 <div className="demo-left">
-                  <div className="demo-box" id="demo-box-6">
+                  <div className="demo-box">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -322,7 +322,7 @@ class Home extends React.Component {
               </div>
               <div className="demo">
                 <div className="demo-left">
-                  <div className="demo-box" id="demo-box-7">
+                  <div className="demo-box">
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
