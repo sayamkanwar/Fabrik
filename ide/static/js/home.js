@@ -43,10 +43,6 @@ class Home extends React.Component {
             <div className="clear" />
           </div>
           <div className="first">
-            <center>
-            <div className="first-right">
-              <img src="static/img/graphic1.png" />
-            </div>
             <div className="first-left">
               <h1>Fabrik</h1>
               <p>
@@ -58,7 +54,10 @@ class Home extends React.Component {
                 Try it now!
               </a>
             </div>
-            </center>
+            <div className="first-right">
+              <img src="static/img/graphic1.png" />
+            </div>
+            <div className="clear" />
           </div>
           <div className="second" ref="about">
             <h1>About</h1>
