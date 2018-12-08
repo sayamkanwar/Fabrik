@@ -4,15 +4,16 @@ a {
 a:hover {
   text-decoration: none;
 }
+body {
+	background: #f9fcff;
+}
 .home-container {
   width: 100%;
   margin: 0;
+  font-family: 'Roboto',sans-serif;
   padding: 0;
   background: #f9fcff;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 .header {
   border-top: 0.3em solid #509de2;
@@ -46,24 +47,14 @@ a:hover {
   margin-right: 6em;
   border-radius: 10em;
 }
-.first {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-}
 .first-left {
-  float: left;
-}
-.first-left {
-  margin-left: 9em;
-  margin-top: 4em;
+	display: inline-block;
+	/*padding: 3em;*/
 }
 .first-left h1 {
   font-size: 3.5em;
   font-weight: bolder;
-  background: linear-gradient(to right, #3dc4de, #47b0e0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #509de2;
 }
 .first-left p {
   font-size: 1.8em;
@@ -84,16 +75,12 @@ a:hover {
   text-decoration: none;
   color: #fff;
 }
-.first-right {
-  margin-left: 10em;
-  float: right;
-}
 .first-right img {
-  width: 80%;
+  width: 40%;
   margin: 2em;
 }
 .second {
-  margin-top: 15em;
+  margin-top: 10em;
 }
 .second h1,
 .third h1,
