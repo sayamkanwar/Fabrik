@@ -107,14 +107,9 @@ def save_to_db(request):
                 existing_model = NetworkVersion.objects.get(network_id=model_id)
                 existing_model.network_def = net
                 existing_model.save()
-                # create initial update for nextLayerId
-                model_update = NetworkUpdates(network_version=existing_model,
-                                              updated_data=json.dumps({'nextLayerId': next_layer_id}),
-                                              tag="ModelShared")
-                model_update.save()
-                return JsonResponse({'result': 'success','id': model.id})
+                return JsonResponse({'result': 'success', 'id': model.id})
             except:
-                return JsonResponse({'result': 'error','error': str(sys.exc_info()[1])})
+                return JsonResponse({'result': 'error', 'error': str(sys.exc_info()[1])})
         else:
             try:
                 if user_id:
