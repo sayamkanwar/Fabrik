@@ -82,6 +82,7 @@ class Home extends React.Component {
               <div className="demo">
                 <div className="demo-left">
                   <div className="demo-box">
+                  <span ref="features" />
                     <div className="demo-box-top">
                       <div className="circle1" />
                       <div className="circle2" />
@@ -122,7 +123,6 @@ class Home extends React.Component {
                   </p>
                 </div>
               </div>
-              <div ref="features" />
               <div className="demo">
                 <div className="demo-right">
                   <h2>Load Model From Input</h2>
