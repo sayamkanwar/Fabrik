@@ -89,32 +89,56 @@ def save_to_db(request):
         net_name = request.POST.get('net_name')
         user_id = request.POST.get('user_id')
         next_layer_id = request.POST.get('nextLayerId')
-        public_sharing = True
         user = None
+        public_sharing = True
         if net_name == '':
             net_name = 'Net'
-        try:
-            # making model sharing public by default for now
-            # TODO: Prvilege on Sharing
-            if user_id:
-                user_id = int(user_id)
-                user = User.objects.get(id=user_id)
 
-            # create a new model on share event
-            model = Network(name=net_name, public_sharing=public_sharing, author=user)
-            model.save()
-            # create first version of model
-            model_version = NetworkVersion(network=model, network_def=net)
-            model_version.save()
-            # create initial update for nextLayerId
-            model_update = NetworkUpdates(network_version=model_version,
-                                          updated_data=json.dumps({'nextLayerId': next_layer_id}),
-                                          tag='ModelShared')
-            model_update.save()
-
-            return JsonResponse({'result': 'success', 'id': model.id})
-        except:
-            return JsonResponse({'result': 'error', 'error': str(sys.exc_info()[1])})
+        if Network.objects.filter(name=net_name).exists():
+            # Update the exising json field
+            try:
+                if user_id:
+                    user_id = int(user_id)
+                    user = User.objects.get(id=user_id)
+                # load the model with the net name
+                model = Network.objects.get(name=net_name)
+                model_id = model.id
+                # update the model with network id same as model id
+                existing_model = NetworkVersion.objects.get(network_id=model_id)
+                existing_model.network_def = net
+                existing_model.save()
+                # create initial update for nextLayerId
+                model_update = NetworkUpdates(network_version=existing_model,
+                                              updated_data=json.dumps({'nextLayerId': next_layer_id}),
+                                              tag="ModelShared")
+                model_update.save()
+                return JsonResponse({'result': 'success','id': model.id})
+            except:
+                return JsonResponse({'result': 'error','error': str(sys.exc_info()[1])})
+        else:
+            try:
+                if user_id:
+                    user_id = int(user_id)
+                    user = User.objects.get(id=user_id)
+                # create a new model on save event
+                model = Network(name=net_name,
+                                public_sharing=public_sharing,
+                                author=user)
+                model.save()
+                # create first version of model
+                model_version = NetworkVersion(network=model,
+                                               network_def=net)
+                model_version.save()
+                # create initial update for nextLayerId
+                model_update = NetworkUpdates(network_version=model_version,
+                                              updated_data=json.dumps({'nextLayerId': next_layer_id}),
+                                              tag="ModelShared")
+                model_update.save()
+                return JsonResponse({'result': 'success',
+                                     'id': model.id})
+            except:
+                return JsonResponse({'result': 'error',
+                                     'error': str(sys.exc_info()[1])})
 
 
 def create_network_version(network_def, updates_batch):
