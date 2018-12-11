@@ -284,12 +284,6 @@ class Signup extends React.Component {
                 </p>
                 <a href="/">Got it!</a>
               </div>
-              <div className="error-message">
-                <img src="static/img/sad.png" />
-                <h1>Error!</h1>
-                <p>Please try entering your details again.</p>
-                <a href="/#signup/">Try again</a>
-              </div>
             </div>
             <div className="right">
               <img className="graphic" src="static/img/graphic_signup.png" />

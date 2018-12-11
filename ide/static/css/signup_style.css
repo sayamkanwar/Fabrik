@@ -179,33 +179,28 @@ input[type="submit"] {
   margin: 6em 3em 6em 3em;
 }
 
-.success,
-.error-message {
+.success {
   opacity: 0;
   display: none;
   transition: all 0.7s ease;
 }
 
-.success img,
-.error-message img {
+.success img {
   width: 27%;
   margin: 7em 0 0 0;
 }
 
-.success h1,
-.error-message h1 {
+.success h1 {
   color: #2a3649;
   font-weight: 300;
 }
 
-.success p,
-.error-message p {
+.success p {
   font-size: 1.2em;
   color: #9eaec6;
 }
 
-.success a,
-.error-message a {
+.success a {
   text-decoration: none;
   background: #2a3649;
   margin: 2em;
