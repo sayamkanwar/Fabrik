@@ -50,7 +50,7 @@ class Home extends React.Component {
                 in browser.
               </p>
               <br />
-              <a href="/accounts/login/" className="try">
+              <a href="/" className="try">
                 Try it now!
               </a>
             </div>
