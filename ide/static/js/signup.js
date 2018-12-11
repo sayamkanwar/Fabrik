@@ -51,7 +51,7 @@ class Signup extends React.Component {
       ).style.borderColor = this.state.correct;
       document.getElementById("username-label").style.color = this.state.label;
       form_error_message.style.opacity = 0;
-      this.setState({ username_error: 0 });
+      this.setState({ error_username: 0 });
     }
   }
   validateEmail() {
