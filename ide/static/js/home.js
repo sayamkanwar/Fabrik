@@ -31,7 +31,7 @@ class Home extends React.Component {
       <div>
         <div className="home-container">
           <div className="header">
-            <img src="static/img/cloudcv.png" className="logo" />
+            <img src="static/img/logo_without_bg.png" className="logo" />
             <div className="links">
               <a href="/accounts/signup/" id="signup">
                 Sign up
@@ -202,14 +202,22 @@ class Home extends React.Component {
                     Build Model From Components
                   </h2>
                   <p>
-                    There are many built-in components called layers which can be used to build a neural net by simply clicking them to add them into the canvas. The layers are grouped into categories such as Data, Vision, Recurrent, Utitlity, Activation/Neuron, Normalization, Common, Noise, Loss and Wrapper.
+                    There are many built-in components called layers which can be used to 
+                    build a neural net by simply clicking them to add them into the canvas.
+                    The layers are grouped into categories such as Data, Vision, Recurrent,
+                    Utitlity, Activation/Neuron, Normalization, Common, Noise, Loss and Wrapper.
                   </p>
                 </div>
               </div>
               <div className="demo">
                 <div className="demo-right">
                   <h2>Export Model</h2>
-                  <p>You can export your model in any of the three frameworks. On exporting your model, the model file is downloaded into your local system which you can use to import your model into the canvas.</p>
+                  <p>
+                  You can export your model in any of the three frameworks. 
+                  On exporting your model, the model file is downloaded into 
+                  your local system which you can use to import your model 
+                  into the canvas.
+                  </p>
                 </div>
                 <div className="demo-left">
                   <div className="demo-box">
@@ -278,7 +286,10 @@ class Home extends React.Component {
                 <div className="demo-right">
                   <h2>Import Model</h2>
                   <p>
-                    You can select your model file from your local system to load it into the canvas and then you can edit it and also perform other actions like share, export.
+                    You can select your model file from your local 
+                    system to load it into the canvas and then you 
+                    can edit it and also perform other actions like 
+                    share, export.
                   </p>
                 </div>
               </div>
@@ -286,7 +297,10 @@ class Home extends React.Component {
                 <div className="demo-right">
                   <h2>Share Model</h2>
                   <p>
-                    A shareable link can be generated using this feature which allows you to share your model by giving the generated link to another person.
+                    A shareable link can be generated using this 
+                    feature which allows you to share your model 
+                    by giving the generated link to another 
+                    person.
                   </p>
                 </div>
                 <div className="demo-left">
@@ -357,7 +371,11 @@ class Home extends React.Component {
                 <div className="demo-right">
                   <h2>Real Time Collaboration</h2>
                   <p>
-                    You can work jointly with other people ,with whom the model is shared, in real time. All the edits that are made will be reflected to everyone who are working on the model.
+                    You can work jointly with other people, 
+                    with whom the model is shared, in real 
+                    time. All the edits that are made will 
+                    be reflected to everyone who are working 
+                    on the model.
                   </p>
                 </div>
               </div>
