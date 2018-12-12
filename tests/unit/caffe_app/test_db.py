@@ -131,4 +131,3 @@ class DeleteModelFromDB(unittest.TestCase):
         response = json.loads(response.content)
         self.assertEqual(response['result'], 'success')
         self.assertEqual(Network.objects.filter(id=10).exists(), False)
-
