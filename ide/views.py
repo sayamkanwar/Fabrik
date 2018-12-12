@@ -38,8 +38,7 @@ def fetch_layer_shape(request):
             # Obtain input shape of new layer
 
             if net[layerId]['info']['type'] == 'Concat':
-                for parentLayerId in net[layerId]['connection']['input'
-                                                                ]:
+                for parentLayerId in net[layerId]['connection']['input']:
 
                     # Check if parent layer have shapes
 
@@ -49,8 +48,7 @@ def fetch_layer_shape(request):
                                                 net[parentLayerId])
             elif not net[layerId]['info']['type'] in dataLayers:
                 if len(net[layerId]['connection']['input']) > 0:
-                    parentLayerId = net[layerId]['connection']['input'
-                                                               ][0]
+                    parentLayerId = net[layerId]['connection']['input'][0]
 
                     # Check if parent layer have shapes
 
@@ -109,8 +107,7 @@ def calculate_parameter(request):
             netObj = get_shapes(netObj)
             for layerId in net:
                 net[layerId]['shape'] = {}
-                net[layerId]['shape']['input'] = netObj[layerId]['shape'
-                                                                 ]['input']
+                net[layerId]['shape']['input'] = netObj[layerId]['shape']['input']
                 net[layerId]['shape']['output'] = \
                     netObj[layerId]['shape']['output']
         except BaseException:
@@ -129,12 +126,10 @@ def delete_model_from_db(request):
             if model.author_id == int(userID):
                 model.delete()
                 return JsonResponse({'result': 'success',
-                                     'data': 'Model successfully deleted!'
-                                     })
+                                     'data': 'Model successfully deleted!'})
             else:
                 return JsonResponse({'result': 'error',
-                                     'error': "This model doesn't belong to you!"
-                                     })
+                                     'error': "This model doesn't belong to you!"})
 
 
 @csrf_exempt
@@ -153,63 +148,48 @@ def save(request, public_sharing):
             net_name = 'Net'
 
         if Network.objects.filter(name=net_name).exists():
-
             # Update the exising json field
-
             try:
                 if user_id:
                     user_id = int(user_id)
                     user = User.objects.get(id=user_id)
-
                 # load the model with the net name
-
                 model = Network.objects.get(name=net_name)
                 model_id = model.id
-
                 # update the model with network id same as model id
-
                 existing_model = \
                     NetworkVersion.objects.get(network_id=model_id)
                 existing_model.network_def = net
                 existing_model.save()
-                
                 return JsonResponse({'result': 'success',
                                      'id': model.id})
-            except BaseException:
+            except:
                 return JsonResponse({'result': 'error',
                                      'error': str(sys.exc_info()[1])})
         else:
-
             try:
                 if user_id:
                     user_id = int(user_id)
                     user = User.objects.get(id=user_id)
-
                 # create a new model on save event
-
                 model = Network(name=net_name,
                                 public_sharing=public_sharing,
                                 author=user)
                 model.save()
-
                 # create first version of model
-
                 model_version = NetworkVersion(network=model,
                                                network_def=net)
                 model_version.save()
-
                 # create initial update for nextLayerId
-
                 model_update = \
                     NetworkUpdates(network_version=model_version,
                                    updated_data=json.dumps(
                                        {'nextLayerId': next_layer_id}),
                                    tag=tag)
                 model_update.save()
-
                 return JsonResponse({'result': 'success',
                                      'id': model.id})
-            except BaseException:
+            except:
                 return JsonResponse({'result': 'error',
                                      'error': str(sys.exc_info()[1])})
 
@@ -254,18 +234,14 @@ def create_network_version(network_def, updates_batch):
             # Delete layer UI event handling
 
             layer_id = updated_data['layerId']
-            input_layer_ids = network_def[layer_id]['connection'
-                                                    ]['input']
-            output_layer_ids = network_def[layer_id]['connection'
-                                                     ]['output']
+            input_layer_ids = network_def[layer_id]['connection']['input']
+            output_layer_ids = network_def[layer_id]['connection']['output']
 
             for input_layer_id in input_layer_ids:
-                network_def[input_layer_id]['connection']['output'
-                                                          ].remove(layer_id)
+                network_def[input_layer_id]['connection']['output'].remove(layer_id)
 
             for output_layer_id in output_layer_ids:
-                network_def[output_layer_id]['connection']['input'
-                                                           ].remove(layer_id)
+                network_def[output_layer_id]['connection']['input'].remove(layer_id)
 
             del network_def[layer_id]
         elif tag == 'AddLayer':
@@ -400,5 +376,4 @@ def fetch_model_history(request):
                                  'data': modelHistory})
         except Exception:
             return JsonResponse({'result': 'error',
-                                 'error': 'Unable to load model history'
-                                 })
+                                 'error': 'Unable to load model history'})
