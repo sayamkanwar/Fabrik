@@ -172,16 +172,7 @@ def save(request, public_sharing):
                     NetworkVersion.objects.get(network_id=model_id)
                 existing_model.network_def = net
                 existing_model.save()
-
-                # create initial update for nextLayerId
-
-                model_update = \
-                    NetworkUpdates(network_version=existing_model,
-                                   updated_data=json.dumps(
-                                       {'nextLayerId': next_layer_id}),
-                                   tag=tag)
-                model_update.save()
-
+                
                 return JsonResponse({'result': 'success',
                                      'id': model.id})
             except BaseException:
