@@ -21,6 +21,7 @@
 * SENet [\[Source\]](https://github.com/hujie-frank/SENet) [\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20180106091323ectck)
 * SimpleNet [\[Source\]](https://github.com/Coderx7/SimpleNet) [\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20180303031044putlf)
 * InceptionV4 [\[Source\]](https://github.com/kentsommer/keras-inceptionV4/blob/master/inception_v4.py)
+* ZFNet [\[Source\]](https://github.com/dandxy89/ImageModels/blob/master/ZFNet.ipynb)
 
 ### Detection
 * 48NET [\[Source\]](https://github.com/CongWeilin/mtcnn-caffe/tree/master/48net)[\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20180110093832phqza)
@@ -33,6 +34,7 @@
 ### Retrieval
 
 * MNIST Siamese [\[Source\]](https://github.com/BVLC/caffe/tree/master/examples/siamese)[\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20171208113503xgnfd)
+* Colornet [\[Source\]](https://github.com/richzhang/colorization/blob/master/models/alexnet_deploy_lab.prototxt)[\[Visualise\]](http://fabrik.cloudcv.org/caffe/load?id=20181208162637cezkh)
 
 ### Seq2Seq
 
