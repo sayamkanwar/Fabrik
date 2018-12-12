@@ -62,12 +62,9 @@ class Dashboard extends React.Component{
           dataType: 'json',
           data: {userID: userid, modelid: model_id},
           success : function (response) {
-
             if (response.result == 'success') {
               this.modalContent = response.data;
               this.openModal();
-            }
-            else if (response.result == 'error') {
             }
           }.bind(this),
           error() {
