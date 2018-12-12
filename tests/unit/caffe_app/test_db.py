@@ -127,7 +127,7 @@ class DeleteModelFromDB(unittest.TestCase):
         model = Network(id=10, name='test_net2', author_id='6')
         model.save()
         response = self.client.post(
-            reverse('deleteModel'), {'userID': '6','modelid': '10'})
+            reverse('deleteModel'), {'userID': '6', 'modelid': '10'})
         response = json.loads(response.content)
         self.assertEqual(response['result'], 'success')
         self.assertEqual(Network.objects.filter(id=10).exists(), False)
