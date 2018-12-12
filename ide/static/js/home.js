@@ -9,15 +9,15 @@ class Home extends React.Component {
     this.scrollToFeatures = this.scrollToFeatures.bind(this);
     this.scrollToTeam = this.scrollToTeam.bind(this);
   }
-  
+
   scrollToAbout() {
     this.refs.about.scrollIntoView({ behavior: "smooth" });
   }
-  
+
   scrollToFeatures() {
     this.refs.features.scrollIntoView({ behavior: "smooth" });
   }
-  
+
   scrollToTeam() {
     this.refs.team.scrollIntoView({ behavior: "smooth" });
   }
@@ -90,11 +90,13 @@ class Home extends React.Component {
                     }}
                     className="box"
                   >
+                    {/* eslint-disable max-len */}
                     <p
                       className="tooltip-txt"
                       ref="load_model_from_zoo_text"
                       data-tip="You can choose a model from a variety of models located in the model zoo belonging to different categories such as Recognition, Detection, Retrieval, Seq2Seq, Captioning and Segmentation."
                     />
+                    {/* eslint-enable max-len */}
                     <ReactTooltip />
                     <img src="static/img/folder.png" />
                     <p>Load Model From Zoo</p>
@@ -109,11 +111,13 @@ class Home extends React.Component {
                     }}
                     className="box"
                   >
+                    {/* eslint-disable max-len */}
                     <p
                       className="tooltip-txt"
                       ref="export_model"
                       data-tip="You can export your model in any of the three frameworks. On exporting your model, the model file is downloaded into your local system which you can use to import your model into the canvas."
                     />
+                    {/* eslint-enable max-len */}
                     <ReactTooltip />
                     <img src="static/img/export.png" />
                     <p>Export Model</p>
@@ -132,11 +136,13 @@ class Home extends React.Component {
                     }}
                     className="box"
                   >
+                    {/* eslint-disable max-len */}
                     <p
                       className="tooltip-txt"
                       ref="real_time_collaboration"
                       data-tip="You can work collaboratively with other people, with whom the model is shared, in real time. All the edits that are made will be reflected to everyone who are working on the model."
                     />
+                    {/* eslint-enable max-len */}
                     <ReactTooltip />
                     <img src="static/img/collab.png" />
                     <p>Real Time Collaboration</p>
