@@ -52,6 +52,7 @@ class SaveToDBTest(unittest.TestCase):
         self.assertEqual(response['result'], 'error')
         self.assertEqual(response['error'], 'No network file found')
 
+
 class SaveModelToDBTest(unittest.TestCase):
 
     def setUp(self):
@@ -96,6 +97,7 @@ class SaveModelToDBTest(unittest.TestCase):
         self.assertEqual(response['result'], 'error')
         self.assertEqual(response['error'], 'No network file found')
 
+
 class LoadModelFromDB(unittest.TestCase):
 
     def setUp(self):
@@ -104,14 +106,15 @@ class LoadModelFromDB(unittest.TestCase):
     def test_load_model(self):
         u_5 = User(id=5, username='user_5')
         u_5.save()
-        model = Network(id=9,name='test_net',author_id='5')
+        model = Network(id=9, name='test_net', author_id='5')
         model.save()
         response = self.client.post(
-            reverse('getModelData'),{'userID':'5'})
+            reverse('getModelData'), {'userID': '5'})
         response = json.loads(response.content)
-        self.assertEqual(response['result'],'success')
-        self.assertEqual(response['data']['Model1_Name'],'test_net')
-        self.assertEqual(response['data']['Model1_ID'],9)
+        self.assertEqual(response['result'], 'success')
+        self.assertEqual(response['data']['Model1_Name'], 'test_net')
+        self.assertEqual(response['data']['Model1_ID'], 9)
+
 
 class DeleteModelFromDB(unittest.TestCase):
 
@@ -121,11 +124,11 @@ class DeleteModelFromDB(unittest.TestCase):
     def test_delete_model(self):
         u_6 = User(id=6, username='user_6')
         u_6.save()
-        model = Network(id=10,name='test_net2',author_id='6')
+        model = Network(id=10, name='test_net2', author_id='6')
         model.save()
         response = self.client.post(
-            reverse('deleteModel'),{'userID':'6','modelid':'10'})
+            reverse('deleteModel'), {'userID': '6','modelid': '10'})
         response = json.loads(response.content)
-        self.assertEqual(response['result'],'success')
-        self.assertEqual(Network.objects.filter(id=10).exists(),False)
+        self.assertEqual(response['result'], 'success')
+        self.assertEqual(Network.objects.filter(id=10).exists(), False)
 
