@@ -8,153 +8,165 @@ class Signup extends React.Component {
     this.state = {
       error_username: 0,
       error_email: 0,
-      error_password1: 0,
-      error_password2: 0,
-      correct: "#8d9ab0",
-      wrong: "#eb4d4b",
-      label: "#3f4a5c"
+      error_password: 0,
+      error_confirm_password: 0
     };
     this.submitForm = this.submitForm.bind(this);
-    this.validateEmail = this.validateEmail.bind(this);
-    this.validateUsername = this.validateUsername.bind(this);
-    this.validatePassword1 = this.validatePassword1.bind(this);
-    this.validatePassword2 = this.validatePassword2.bind(this);
+    this.validateUsernameMaxLen = this.validateUsernameMaxLen.bind(this);
+    this.onClickUsernameInput = this.onClickUsernameInput.bind(this);
+    this.validateEmailFormat = this.validateEmailFormat.bind(this);
+    this.onClickEmailInput = this.onClickEmailInput.bind(this);
+    this.validatePasswordFormat = this.validatePasswordFormat.bind(this);
+    this.onClickPasswordInput = this.onClickPasswordInput.bind(this);
+    this.validateSamePassword = this.validateSamePassword.bind(this);
+    this.onClickConfirmPasswordInput = this.onClickConfirmPasswordInput.bind(this);
   }
-  validateUsername() {
+
+  onClickUsernameInput() {
+    document.getElementById("username-input").className = "input active-input";
+    document.getElementById("username-icon").src = "static/img/username_icon_active.png";
+  }
+
+  validateUsernameMaxLen() {
     let username = document.getElementById("username-value").value;
-    let form_error_message = document.getElementById("form-error-message");
-    if (username.length > 150) {
-      document.getElementById(
-        "username-value"
-      ).style.borderColor = this.state.wrong;
-      let username_label = document.getElementById("username-label");
-      username_label.style.fontSize = "0.7em";
-      username_label.style.top = "-1em";
-      username_label.style.left = "2.4em";
-      form_error_message.innerHTML =
-        "The username can't be more than 150 characters.";
-      form_error_message.style.opacity = 1;
-      username_label.style.color = this.state.wrong;
+    let username_input = document.getElementById("username-input");
+    let username_icon = document.getElementById("username-icon");
+    let error_message = document.getElementById("error-message");
+    username_input.className = "input";
+    if (username.length == "") {
+      username_input.className = "input wrong-input";
+      error_message.innerHTML = "The username can't be empty.";
+      error_message.className = "error-message show";
+      username_icon.src = "static/img/username_icon_wrong.png";
       this.setState({ error_username: 1 });
-    } else if (username.length == "") {
-      document.getElementById(
-        "username-value"
-      ).style.borderColor = this.state.wrong;
-      form_error_message.innerHTML = "The username can't be empty.";
-      form_error_message.style.opacity = 1;
-      let username_label = document.getElementById("username-label");
-      username_label.style.color = this.state.wrong;
+    } else if (username.length > 150) {
+      username_input.className = "input wrong-input";
+      error_message.innerHTML = "The username can't be more than 150 characters.";
+      error_message.className = "error-message show";
+      username_icon.src = "static/img/username_icon_wrong.png";
       this.setState({ error_username: 1 });
     } else {
-      document.getElementById(
-        "username-value"
-      ).style.borderColor = this.state.correct;
-      document.getElementById("username-label").style.color = this.state.label;
-      form_error_message.style.opacity = 0;
+      username_input.className = "input";
+      error_message.innerHTML = "";
+      error_message.className = "error-message";
       this.setState({ error_username: 0 });
     }
   }
-  validateEmail() {
+
+  onClickEmailInput() {
+    document.getElementById("email-input").className = "input active-input";
+    document.getElementById("email-icon").src =
+      "static/img/email_icon_active.png";
+  }
+
+  validateEmailFormat() {
     let email = document.getElementById("email-value").value;
-    let form_error_message = document.getElementById("form-error-message");
-    if (!email.includes("@")) {
-      document.getElementById(
-        "email-value"
-      ).style.borderColor = this.state.wrong;
-      let email_label = document.getElementById("email-label");
-      if (email != "") {
-        email_label.style.fontSize = "0.7em";
-        email_label.style.top = "-1em";
-        email_label.style.left = "2.4em";
-      }
-      form_error_message.innerHTML =
-        "The email address should include @ symbol.";
-      form_error_message.style.opacity = 1;
-      email_label.style.color = this.state.wrong;
+    let email_input = document.getElementById("email-input");
+    let email_icon = document.getElementById("email-icon");
+    let error_message = document.getElementById("error-message");
+    let symbol = email.indexOf("@");
+    let next = email.charAt(symbol + 1);
+    email_input.className = "input";
+    if (email.length == "") {
+      email_input.className = "input wrong-input";
+      error_message.innerHTML = "The email can't be empty.";
+      error_message.className = "error-message show";
+      email_icon.src = "static/img/email_icon_wrong.png";
+      this.setState({ error_email: 1 });
+    } else if (!email.includes("@")) {
+      email_input.className = "input wrong-input";
+      error_message.innerHTML = "The email should contain @ symbol.";
+      error_message.className = "error-message show";
+      email_icon.src = "static/img/email_icon_wrong.png";
+      this.setState({ error_email: 1 });
+    } else if (next == "") {
+      email_input.className = "input wrong-input";
+      error_message.innerHTML = "The email should contain the domain.";
+      error_message.className = "error-message show";
+      email_icon.src = "static/img/email_icon_wrong.png";
       this.setState({ error_email: 1 });
     } else {
-      document.getElementById(
-        "email-value"
-      ).style.borderColor = this.state.correct;
-      document.getElementById("email-label").style.color = this.state.label;
-      form_error_message.style.opacity = 0;
+      email_input.className = "input";
+      error_message.innerHTML = "";
+      error_message.className = "error-message";
       this.setState({ error_email: 0 });
     }
   }
-  validatePassword1() {
-    let password1 = document.getElementById("password1-value").value;
-    let form_error_message = document.getElementById("form-error-message");
-    if (password1 == "") {
-      document.getElementById(
-        "password1-value"
-      ).style.borderColor = this.state.wrong;
-      form_error_message.innerHTML = "The password can't be empty.";
-      form_error_message.style.opacity = 1;
-      let password1_label = document.getElementById("password1-label");
-      password1_label.style.color = this.state.wrong;
-      this.setState({ error_password1: 1 });
-    } else if (password1.length < 6) {
-      let password1_label = document.getElementById("password1-label");
-      password1_label.style.fontSize = "0.7em";
-      password1_label.style.top = "-1em";
-      password1_label.style.left = "2.4em";
-      document.getElementById(
-        "password1-value"
-      ).style.borderColor = this.state.wrong;
-      form_error_message.innerHTML =
-        "The password has to be atleast 6 characters.";
-      form_error_message.style.opacity = 1;
-      password1_label.style.color = this.state.wrong;
-      this.setState({ error_password1: 1 });
+
+  onClickPasswordInput() {
+    document.getElementById("password-input").className = "input active-input";
+    document.getElementById("password-icon").src =
+      "static/img/password_icon_active.png";
+  }
+
+  validatePasswordFormat() {
+    let password = document.getElementById("password-value").value;
+    let password_input = document.getElementById("password-input");
+    let password_icon = document.getElementById("password-icon");
+    let error_message = document.getElementById("error-message");
+    password_input.className = "input";
+    if (password.length == "") {
+      password_input.className = "input wrong-input";
+      error_message.innerHTML = "The password can't be empty.";
+      error_message.className = "error-message show";
+      password_icon.src = "static/img/password_icon_wrong.png";
+      this.setState({ error_password: 1 });
+    } else if (password.length < 6) {
+      password_input.className = "input wrong-input";
+      error_message.innerHTML = "The password should be atleast 6 characters long.";
+      error_message.className = "error-message show";
+      password_icon.src = "static/img/password_icon_wrong.png";
+      this.setState({ error_password: 1 });
     } else {
-      document.getElementById(
-        "password1-value"
-      ).style.borderColor = this.state.correct;
-      document.getElementById("password1-label").style.color = this.state.label;
-      form_error_message.style.opacity = 0;
-      this.setState({ error_password1: 0 });
+      password_input.className = "input";
+      error_message.innerHTML = "";
+      error_message.className = "error-message";
+      this.setState({ error_password: 0 });
     }
   }
-  validatePassword2() {
-    let password1 = document.getElementById("password1-value").value;
-    let password2 = document.getElementById("password2-value").value;
-    let form_error_message = document.getElementById("form-error-message");
-    if (password2 != password1) {
-      document.getElementById(
-        "password2-value"
-      ).style.borderColor = this.state.wrong;
-      form_error_message.innerHTML =
-        "This password is not same as the original password.";
-      form_error_message.style.opacity = 1;
-      let password2_label = document.getElementById("password2-label");
-      password2_label.style.color = this.state.wrong;
-      password2_label.style.fontSize = "0.7em";
-      password2_label.style.top = "-1em";
-      password2_label.style.left = "2.4em";
-      this.setState({ error_password2: 1 });
+
+  onClickConfirmPasswordInput() {
+    document.getElementById("confirm-password-input").className = "input active-input";
+    document.getElementById("confirm-password-icon").src = "static/img/password_icon_active.png";
+  }
+
+  validateSamePassword() {
+    let confirm_password = document.getElementById("confirm-password-value").value;
+    let password = document.getElementById("password-value").value;
+    let confirm_password_input = document.getElementById("confirm-password-input");
+    let confirm_password_icon = document.getElementById("confirm-password-icon");
+    let error_message = document.getElementById("error-message");
+    confirm_password_input.className = "input";
+    if (confirm_password != password) {
+      confirm_password_input.className = "input wrong-input";
+      error_message.innerHTML = "The passwords do not match.";
+      error_message.className = "error-message show";
+      confirm_password_icon.src = "static/img/password_icon_wrong.png";
+      this.setState({ error_confirm_password: 1 });
     } else {
-      document.getElementById(
-        "password2-value"
-      ).style.borderColor = this.state.correct;
-      document.getElementById("password2-label").style.color = this.state.label;
-      form_error_message.style.opacity = 0;
-      this.setState({ error_password2: 0 });
+      confirm_password_input.className = "input";
+      error_message.innerHTML = "";
+      error_message.className = "error-message";
+      this.setState({ error_confirm_password: 0 });
     }
   }
+
   submitForm(e) {
     e.preventDefault();
     let username = document.getElementById("username-value").value;
     let email = document.getElementById("email-value").value;
-    let password1 = document.getElementById("password1-value").value;
-    let password2 = document.getElementById("password2-value").value;
-    let csrfmiddlewaretoken = document.getElementsByName(
-      "csrfmiddlewaretoken"
-    )[0].value;
+    let password = document.getElementById("password-value").value;
+    password.replace(/[|&;$%@"<>()+,]/g, "");
+    let confirm_password = document.getElementById("confirm-password-value").value;
+    confirm_password.replace(/[|&;$%@"<>()+,]/g, "");
+    let cleaned_password = password.trim();
+    let cleaned_confirm_password = confirm_password.trim();
+    let csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
     if (
       this.state.error_username == 0 &&
       this.state.error_email == 0 &&
-      this.state.error_password1 == 0 &&
-      this.state.error_password2 == 0
+      this.state.error_password == 0 &&
+      this.state.error_confirm_password == 0
     ) {
       $.ajax({
         method: "POST",
@@ -163,131 +175,115 @@ class Signup extends React.Component {
           csrfmiddlewaretoken: csrfmiddlewaretoken,
           username: username,
           email: email,
-          password1: password1,
-          password2: password2
+          password1: cleaned_password,
+          password2: cleaned_confirm_password
         },
         success: function(result) {
-          console.log(result);
           if (result.location == "/") {
-            console.log("success");
-            let right = document.getElementsByClassName("right")[0];
-            let left = document.getElementsByClassName("left")[0];
-            let leftContent = document.getElementsByClassName(
-              "left-content"
-            )[0];
-            let success = document.getElementsByClassName("success")[0];
-            let rightImg = document.getElementsByClassName("graphic")[0];
-            let logo = document.getElementsByClassName("logo")[0];
-            setTimeout(function() {});
-            rightImg.style.opacity = "0";
-            leftContent.style.opacity = "0";
-            setTimeout(function() {
-              rightImg.style.display = "none";
-              right.style.width = "0";
-              left.style.width = "100%";
-              setTimeout(function() {
-                leftContent.style.display = "none";
-                success.style.display = "inline-block";
-                setTimeout(function() {
-                  success.style.opacity = "1";
-                }, 500);
-              }, 400);
-            }, 400);
+            window.location = "/";
           } else {
-            console.log("Internet Error");
+            let error_message = document.getElementById("error-message");
+            error_message.innerHTML = "Network error";
+            error_message.className = "error-message show";
+          }
+        },
+        complete: function(xhr) {
+          if (xhr.status == 400) {
+            let error_message = document.getElementById("error-message");
+            error_message.innerHTML =
+              "An account with those details already exists.";
+            error_message.className = "error-message show";
           }
         }
       });
     } else {
-      console.log("Error");
+      let error_message = document.getElementById("error-message");
+      error_message.innerHTML = "Error";
+      error_message.className = "error-message show";
     }
   }
   render() {
     return (
-      <div className="container">
+      <div className="signup-container">
         <center>
           <div className="card">
-            <div className="left">
-              <div className="left-content">
-                <div className="logo">
-                  <img src="static/img/logo_without_bg.png" />
-                </div>
-                <div className="form">
-                  <h1>
-                    Create your <br /> account now.
-                  </h1>
-                  <form method="post" onSubmit={this.submitForm}>
-                    <div className="input-component">
-                      <input
-                        onBlur={this.validateUsername}
-                        type="text"
-                        id="username-value"
-                        pattern=".{1,150}"
-                        name="username"
-                        required
-                      />
-                      <span className="line" />
-                      <label id="username-label">Username</label>
-                    </div>
-                    <div className="input-component">
-                      <input
-                        onBlur={this.validateEmail}
-                        type="email"
-                        id="email-value"
-                        name="email"
-                        required
-                      />
-                      <span className="line" />
-                      <label id="email-label">Email</label>
-                    </div>
-                    <div className="input-component">
-                      <input
-                        onBlur={this.validatePassword1}
-                        type="password"
-                        id="password1-value"
-                        pattern=".{6,}"
-                        name="password1"
-                        required
-                      />
-                      <span className="line" id="line-password1" />
-                      <label id="password1-label">Password</label>
-                    </div>
-                    <div className="input-component" id="last">
-                      <input
-                        onBlur={this.validatePassword2}
-                        type="password"
-                        id="password2-value"
-                        pattern=".{6,}"
-                        name="password2"
-                        required
-                      />
-                      <span className="line" id="line-password2" />
-                      <label id="password2-label">Confirm Password</label>
-                    </div>
-                    <DjangoCSRFToken />
-                    <span id="form-error-message" />
-                    <br />
-                    <input type="submit" name="submit" />
-                  </form>
-                </div>
-                <br />
-                <a className="login-link" href="/accounts/login/">
-                  Already have an account?
-                </a>
+            <div className="card-top">
+              <div className="card-top-left">
+                <img src="static/img/logo_without_bg.png" />
               </div>
-              <div className="success">
-                <img src="static/img/smile.png" />
-                <h1>Success!</h1>
-                <p>
-                  Open canvas to start creating <br />
-                  beatuful neural nets.
-                </p>
-                <a href="/">Got it!</a>
+              <div className="card-top-right">
+                <img src="static/img/account.png" />
+                <h1>Create your account</h1>
               </div>
             </div>
-            <div className="right">
-              <img className="graphic" src="static/img/graphic_signup.png" />
+            <div className="form">
+              <form onSubmit={this.submitForm}>
+                <div className="input" id="username-input">
+                  <img id="username-icon" src="static/img/username_icon.png" />
+                  <input
+                    onFocus={this.onClickUsernameInput}
+                    onBlur={this.validateUsernameMaxLen}
+                    className="field"
+                    type="text"
+                    pattern=".{1,150}"
+                    name="username"
+                    id="username-value"
+                    placeholder="Username"
+                    required
+                  />
+                </div>
+                <div className="input" id="email-input">
+                  <img id="email-icon" src="static/img/email_icon.png" />
+                  <input
+                    onFocus={this.onClickEmailInput}
+                    onBlur={this.validateEmailFormat}
+                    className="field"
+                    type="email"
+                    name="email"
+                    id="email-value"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div className="input" id="password-input">
+                  <img id="password-icon" src="static/img/password_icon.png" />
+                  <input
+                    onFocus={this.onClickPasswordInput}
+                    onBlur={this.validatePasswordFormat}
+                    className="field"
+                    type="password"
+                    pattern=".{6,}"
+                    name="password"
+                    id="password-value"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div className="input" id="confirm-password-input">
+                  <img
+                    id="confirm-password-icon"
+                    src="static/img/password_icon.png"
+                  />
+                  <input
+                    onFocus={this.onClickConfirmPasswordInput}
+                    onBlur={this.validateSamePassword}
+                    className="field"
+                    type="password"
+                    pattern=".{6,}"
+                    name="confirmpassword"
+                    id="confirm-password-value"
+                    placeholder="Confirm Password"
+                    required
+                  />
+                </div>
+                <DjangoCSRFToken />
+                <p className="error-message" id="error-message" />
+                <input type="submit" name="submit" value="sign up" />
+              </form>
             </div>
+            <a className="login-link" href="/accounts/login/">
+              Already have an account?
+            </a>
           </div>
         </center>
       </div>
