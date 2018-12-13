@@ -8,6 +8,8 @@ class Home extends React.Component {
     this.scrollToAbout = this.scrollToAbout.bind(this);
     this.scrollToFeatures = this.scrollToFeatures.bind(this);
     this.scrollToTeam = this.scrollToTeam.bind(this);
+    this.showFirstRow = this.showFirstRow.bind(this);
+    this.showSecondRow = this.showSecondRow.bind(this);
   }
 
   scrollToAbout() {
@@ -20,6 +22,28 @@ class Home extends React.Component {
 
   scrollToTeam() {
     this.refs.team.scrollIntoView({ behavior: "smooth" });
+  }
+
+  showFirstRow() {
+    let slider = document.getElementsByClassName("slider")[0];
+    slider.style.left = "0";
+    let dot1 = document.getElementsByClassName("dot1")[0];
+    let dot2 = document.getElementsByClassName("dot2")[0];
+    let dot3 = document.getElementsByClassName("dot3")[0];
+    dot1.className = "dot1 active";
+    dot2.className = "dot2";
+    dot3.className = "dot3";
+  }
+
+  showSecondRow() {
+    let slider = document.getElementsByClassName("slider")[0];
+    slider.style.left = "-100%";
+    let dot1 = document.getElementsByClassName("dot1")[0];
+    let dot2 = document.getElementsByClassName("dot2")[0];
+    let dot3 = document.getElementsByClassName("dot3")[0];
+    dot1.className = "dot1";
+    dot2.className = "dot2 active";
+    dot3.className = "dot3";
   }
 
   render() {
@@ -104,6 +128,52 @@ class Home extends React.Component {
                   </div>
                   <div
                     onMouseOver={() => {
+                      ReactTooltip.show(
+                        findDOMNode(this.refs.load_model_from_input)
+                      );
+                    }}
+                    onMouseOut={() => {
+                      ReactTooltip.hide(
+                        findDOMNode(this.refs.load_model_from_input)
+                      );
+                    }}
+                    className="box"
+                  >
+                    {/* eslint-disable max-len */}
+                    <p
+                      className="tooltip-txt"
+                      ref="load_model_from_input"
+                      data-tip="You can choose a model from a variety of models located in the model zoo belonging to different categories such as Recognition, Detection, Retrieval, Seq2Seq, Captioning and Segmentation."
+                    />
+                    {/* eslint-enable max-len */}
+                    <ReactTooltip />
+                    <img src="static/img/input.png" />
+                    <p>Load Model From Input</p>
+                    <div className="line" id="line_load_model_from_input" />
+                  </div>
+                  <div
+                    onMouseOver={() => {
+                      ReactTooltip.show(findDOMNode(this.refs.build_model));
+                    }}
+                    onMouseOut={() => {
+                      ReactTooltip.hide(findDOMNode(this.refs.build_model));
+                    }}
+                    className="box"
+                  >
+                    {/* eslint-disable max-len */}
+                    <p
+                      className="tooltip-txt"
+                      ref="build_model"
+                      data-tip="There are many built-in components called layers which can be used to build a neural net by simply clicking them to add them into the canvas. The layers are grouped into categories such as Data, Vision, Recurrent, Utitlity, Activation/Neuron, Normalization, Common, Noise, Loss and Wrapper."
+                    />
+                    {/* eslint-enable max-len */}
+                    <ReactTooltip />
+                    <img src="static/img/build.png" />
+                    <p>Build Model</p>
+                    <div className="line" id="line_build_model" />
+                  </div>
+                  <div
+                    onMouseOver={() => {
                       ReactTooltip.show(findDOMNode(this.refs.export_model));
                     }}
                     onMouseOut={() => {
@@ -122,6 +192,27 @@ class Home extends React.Component {
                     <img src="static/img/export.png" />
                     <p>Export Model</p>
                     <div className="line" id="line_export_model" />
+                  </div>
+                  <div
+                    onMouseOver={() => {
+                      ReactTooltip.show(findDOMNode(this.refs.import_model));
+                    }}
+                    onMouseOut={() => {
+                      ReactTooltip.hide(findDOMNode(this.refs.import_model));
+                    }}
+                    className="box"
+                  >
+                    {/* eslint-disable max-len */}
+                    <p
+                      className="tooltip-txt"
+                      ref="import_model"
+                      data-tip="You can select your model file from your local system to load it into the canvas and then you can edit it and also perform other actions like share, export."
+                    />
+                    {/* eslint-enable max-len */}
+                    <ReactTooltip />
+                    <img src="static/img/import.png" />
+                    <p>Import Model</p>
+                    <div className="line" id="line_import_model" />
                   </div>
                   <div
                     onMouseOver={() => {
@@ -148,6 +239,14 @@ class Home extends React.Component {
                     <p>Real Time Collaboration</p>
                     <div className="line" id="line_real_time_collaboration" />
                   </div>
+                </div>
+                <div className="dots">
+                  <a onClick={() => this.showFirstRow()}>
+                    <div className="dot1 active" />
+                  </a>
+                  <a onClick={() => this.showSecondRow()}>
+                    <div className="dot2" />
+                  </a>
                 </div>
               </div>
             </center>
