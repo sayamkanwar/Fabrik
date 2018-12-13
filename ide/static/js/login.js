@@ -28,7 +28,9 @@ class Login extends React.Component {
           this.props.setUserName(null);
           localStorage.removeItem('userID');
           localStorage.removeItem('username');
-          localStorage.removeItem('email');
+          if (localStorage.hasOwnProperty('email')) {
+          	localStorage.removeItem('email');
+          }
         }
       }.bind(this),
       error: function () {
