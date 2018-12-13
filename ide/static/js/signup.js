@@ -180,6 +180,7 @@ class Signup extends React.Component {
         },
         success: function(result) {
           if (result.location == "/") {
+          	localStorage.setItem('email', email);
             window.location = "/";
           } else {
             let error_message = document.getElementById("error-message");
